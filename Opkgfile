@@ -1,0 +1,34 @@
+/*
+ * © 2026 Platform Engineering Labs Inc.
+ *
+ * SPDX-License-Identifier: FSL-1.1-ALv2
+ */
+
+amends "orbital:/opkg.pkl"
+
+import "orbital:/requirement.pkl"
+import "pkl:semver"
+
+name        = "standard"
+version     = semver.Version(read("env:VERSION"))
+publisher   = read("env:OPS_PUBLISHER")
+originator  = read("env:OPS_ORIGINATOR")
+license     = "FSL-1.1-ALv2"
+summary     = "Standard set of formae plugins"
+description = "Curated metapackage that pulls in the default formae plugin set (aws, azure, gcp, oci, ovh, auth-basic)."
+
+requirements = new Listing<requirement.Requirement> {
+  new { name = "aws"        method = "depends" operator = "ANY" }
+  new { name = "azure"      method = "depends" operator = "ANY" }
+  new { name = "gcp"        method = "depends" operator = "ANY" }
+  new { name = "oci"        method = "depends" operator = "ANY" }
+  new { name = "ovh"        method = "depends" operator = "ANY" }
+  new { name = "auth-basic" method = "depends" operator = "ANY" }
+}
+
+metadata {
+  ["display"] {
+    ["kind"]     = "metapackage"
+    ["category"] = "bundle"
+  }
+}
