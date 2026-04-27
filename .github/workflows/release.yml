@@ -6,7 +6,6 @@ on:
   push:
     tags:
       - '[0-9]*'
-      - 'v[0-9]*'
 
 jobs:
   dispatch:
@@ -17,6 +16,7 @@ jobs:
         run: |
           gh workflow run plugin-build.yml \
             -R platform-engineering-labs/formae-actions \
+            --ref main \
             -f plugin-name=standard \
             -f plugin-repo=$GITHUB_REPOSITORY \
             -f ref=$GITHUB_REF_NAME \
