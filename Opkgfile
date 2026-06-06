@@ -15,14 +15,13 @@ publisher   = read("env:OPS_PUBLISHER")
 originator  = read("env:OPS_ORIGINATOR")
 license     = "FSL-1.1-ALv2"
 summary     = "Standard set of formae plugins"
-description = "Curated metapackage that pulls in the default formae plugin set (aws, azure, gcp, oci, ovh, auth-basic)."
+description = "Curated metapackage that pulls in the default formae plugin set (aws, azure, gcp, k8s, auth-basic)."
 
 requirements = new Listing<requirement.Requirement> {
   new { name = "aws"        method = "depends" operator = "ANY" }
   new { name = "azure"      method = "depends" operator = "ANY" }
   new { name = "gcp"        method = "depends" operator = "ANY" }
-  new { name = "oci"        method = "depends" operator = "ANY" }
-  new { name = "ovh"        method = "depends" operator = "ANY" }
+  new { name = "k8s"        method = "depends" operator = "ANY" }
   new { name = "auth-basic" method = "depends" operator = "ANY" }
 }
 

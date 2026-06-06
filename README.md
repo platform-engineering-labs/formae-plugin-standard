@@ -7,8 +7,7 @@ Orbital metapackage that pulls in the default set of [formae](https://github.com
 - [aws](https://github.com/platform-engineering-labs/formae-plugin-aws)
 - [azure](https://github.com/platform-engineering-labs/formae-plugin-azure)
 - [gcp](https://github.com/platform-engineering-labs/formae-plugin-gcp)
-- [oci](https://github.com/platform-engineering-labs/formae-plugin-oci)
-- [ovh](https://github.com/platform-engineering-labs/formae-plugin-ovh)
+- [k8s](https://github.com/platform-engineering-labs/formae-plugin-kubernetes)
 - [auth-basic](https://github.com/platform-engineering-labs/formae-plugin-auth-basic)
 
 The orbital solver pulls each plugin in at its latest available version in the requested channel. Pinning a specific version of `standard` does not pin the underlying plugins — to pin a plugin, install it explicitly:
