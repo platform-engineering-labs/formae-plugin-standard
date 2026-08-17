@@ -9,6 +9,11 @@ Orbital metapackage that pulls in the default set of [formae](https://github.com
 - [gcp](https://github.com/platform-engineering-labs/formae-plugin-gcp)
 - [k8s](https://github.com/platform-engineering-labs/formae-plugin-kubernetes)
 - [auth-basic](https://github.com/platform-engineering-labs/formae-plugin-auth-basic)
+- [oidc](https://github.com/platform-engineering-labs/formae-plugin-oidc)
+
+`oidc` is what `formae login` drives to sign in to the hosted platform. It ships here so the binary is already on disk wherever formae is, rather than being installed part-way through a sign-in.
+
+This bundle requires formae 0.89.0 or newer, which is the release that can drive it.
 
 The orbital solver pulls each plugin in at its latest available version in the requested channel. Pinning a specific version of `standard` does not pin the underlying plugins — to pin a plugin, install it explicitly:
 
