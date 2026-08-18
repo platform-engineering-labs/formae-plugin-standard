@@ -15,7 +15,7 @@ publisher   = read("env:OPS_PUBLISHER")
 originator  = read("env:OPS_ORIGINATOR")
 license     = "FSL-1.1-ALv2"
 summary     = "Standard set of formae plugins"
-description = "Curated metapackage that pulls in the default formae plugin set (aws, azure, gcp, k8s, auth-basic)."
+description = "Curated metapackage that pulls in the default formae plugin set (aws, azure, gcp, k8s, auth-basic, oidc)."
 
 requirements = new Listing<requirement.Requirement> {
   new { name = "aws"        method = "depends" operator = "ANY" }
@@ -23,6 +23,26 @@ requirements = new Listing<requirement.Requirement> {
   new { name = "gcp"        method = "depends" operator = "ANY" }
   new { name = "k8s"        method = "depends" operator = "ANY" }
   new { name = "auth-basic" method = "depends" operator = "ANY" }
+  // oidc ships with formae rather than being installed during onboarding.
+  //
+  // Signing in to the hosted platform drives this plugin, and the plugin is
+  // discovered from the directory the bundle installs into. Asking a user to
+  // install it half-way through a sign-in — for a reason they have no way to
+  // judge, and possibly with sudo — is the version of that flow that loses
+  // people; installing formae is where a privilege prompt is expected and can
+  // be evaluated. The cost is that a self-hosting user carries an auth plugin
+  // they never load.
+  new { name = "oidc"       method = "depends" operator = "ANY" }
+
+  // The floor is declared rather than remembered: the bundle that carries the
+  // auth plugin is the bundle that needs the formae which can drive it, and
+  // `formae login --hosted` does not exist before 0.89.0.
+  new {
+    name     = "formae"
+    method   = "depends"
+    operator = "GTE"
+    version  = semver.Version("0.89.0")
+  }
 }
 
 metadata {
